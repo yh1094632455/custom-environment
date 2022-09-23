@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core"
+         xmlns:d="jelly:define"
+         xmlns:f="/lib/form"
+         xmlns:l="/lib/layout"
+         xmlns:st="jelly:stapler"
+         xmlns:t="/lib/hudson">
+
+    <f:entry field="key" title="key" description="${%key}">
+        <f:textbox />
+    </f:entry>
+    <f:entry field="value" title="value" description="${%value}">
+        <f:textbox />
+    </f:entry>
+
+</j:jelly>

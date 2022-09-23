@@ -1,0 +1,5 @@
+<?jelly escape-by-default='true'?>
+<div>
+    <p>添加全局配置或者添加用户配置后在构建的时候会自动添加到环境变量（用户名和密码的环境变量名为userName,password,更多环境变量设置 key是环境变量名value是对应的值，用户配置会覆盖全局配置）</p>
+    <p>After adding global configuration or adding user configuration, it will be automatically added to the environment variable when building (the environment variables of username and password are named userName, password, and more environment variable settings key is the environment variable name value is the corresponding value, User configuration overrides global configuration)</p>
+</div>

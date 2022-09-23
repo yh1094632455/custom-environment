@@ -1,0 +1,2 @@
+_extends: .github
+tag-template: custom-environment-$NEXT_MINOR_VERSION
