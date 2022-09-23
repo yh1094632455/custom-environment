@@ -63,7 +63,8 @@
 
 ## If you are using the Generic Webhook Trigger to trigger the project build
 - You can set Cause to trigger the acquisition of environment variables of different users. If the value in the brackets in [value] is equal to the environment variable set by a user, the environment variable used for project construction will use the environment variable of the matched player. The above Image instance, where value can be a fixed value or a variable obtained by Generic Webhook Trigger, set with $xxxx, such as [$pushUserName]
-- 你可以设置Cause来触发获取不同用户的环境变量，[value]中括号里面的value如果等于某个用户设置的环境变量来，则项目构建用的环境变量会使用匹配到的玩家的环境变量，上面图片实例，其中value 可以是固定的值或者是Generic Webhook Trigger获取的变量，采用$xxxx来设置，比如[$pushUserName]
 ## 如果你是用 Generic Webhook Trigger 触发项目构建
+- 你可以设置Cause来触发获取不同用户的环境变量，[value]中括号里面的value如果等于某个用户设置的环境变量来，则项目构建用的环境变量会使用匹配到的玩家的环境变量，上面图片实例，其中value 可以是固定的值或者是Generic Webhook Trigger获取的变量，采用$xxxx来设置，比如[$pushUserName]
+
 Licensed under MIT, see [LICENSE](LICENSE.md)
 
