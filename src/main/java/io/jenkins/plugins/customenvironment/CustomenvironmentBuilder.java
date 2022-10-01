@@ -163,8 +163,8 @@ public class CustomenvironmentBuilder extends Builder implements SimpleBuildStep
         return isFind[0];
     }
 
-    private static String getPasswd(String pwd){
-        return Secret.fromString(pwd).getPlainText();
+    private static String getPasswd(Secret pwd){
+        return pwd.getPlainText();
     }
     private static boolean findValueInMoreInfoPasswd(List<CustomenvironmentUserPropertyItemPasswd> moreInfo, final String value, TaskListener listener){
 //        listener.getLogger().println("moreInfo" + moreInfo);
@@ -218,7 +218,7 @@ public class CustomenvironmentBuilder extends Builder implements SimpleBuildStep
                         CustomenvironmentUserPropertyItemPasswd item = itemsPasswd.get(i);
                         envs.put("g_" + item.getKey(), getPasswd(item.getValue()));
                         envs.put("r_" + item.getKey(), getPasswd(item.getValue()));
-                        envs.put(item.getKey(), item.getValue());
+                        envs.put(item.getKey(), getPasswd(item.getValue()));
                     }
 
                 }else{
