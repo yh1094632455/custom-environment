@@ -15,6 +15,7 @@ public class CustomenvironmentGlobalConfig extends GlobalConfiguration{
     }
 
     private boolean enableConfig;
+    private  boolean enableGlobal;
     private List<CustomenvironmentUserPropertyItem> envItems = new ArrayList<>();
     private List<CustomenvironmentUserPropertyItemPasswd> envItemsPasswd = new ArrayList<>();
     public CustomenvironmentGlobalConfig(){
@@ -45,6 +46,8 @@ public class CustomenvironmentGlobalConfig extends GlobalConfiguration{
     public void setEnableConfig(boolean enableConfig){
         this.enableConfig = enableConfig;
     }
+    @DataBoundSetter
+    public void setEnableGlobal(boolean enableGlobal){ this.enableGlobal = enableGlobal;}
     public List<CustomenvironmentUserPropertyItem> getEnvItems() {
         return envItems;
     }
@@ -54,4 +57,9 @@ public class CustomenvironmentGlobalConfig extends GlobalConfiguration{
     public boolean getEnableConfig(){
         return enableConfig;
     }
+
+    public boolean getEnableGlobal(){
+        return enableGlobal;
+    }
+
 }

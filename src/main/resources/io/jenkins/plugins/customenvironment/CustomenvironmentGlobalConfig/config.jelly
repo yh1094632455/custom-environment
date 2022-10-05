@@ -6,6 +6,9 @@
         <f:entry field="enableConfig">
             <f:checkbox title="${%Enabled}"/>
         </f:entry>
+        <f:entry field="enableGlobal">
+            <f:checkbox title="${%enableGlobal}"/>
+        </f:entry>
         <f:repeatableProperty field="envItems" add="${%normal}">
             <f:entry title="">
                 <div align="right">

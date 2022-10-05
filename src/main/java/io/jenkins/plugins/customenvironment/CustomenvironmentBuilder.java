@@ -81,6 +81,7 @@ public class CustomenvironmentBuilder extends SimpleBuildWrapper {
 //            }
 //        }
         User user = CustomenvironmentUtils.getUser(build);
+        listener.getLogger().println(user.getFullName());
         cause = build.getCauses().stream().map(Cause::getShortDescription).collect(Collectors.joining());
         causeUser = user;
     }
@@ -126,7 +127,7 @@ public class CustomenvironmentBuilder extends SimpleBuildWrapper {
         variables.put(Constants.Build_Causes,cause);
         variables.put(Constants.Build_Page,build.getParent().getAbsoluteUrl() + build.getId());
         variables.put(Constants.Build_Console,build.getParent().getAbsoluteUrl() + build.getId() + "/console");
-        if(config.getEnableConfig() && causeUser != null){
+        if(config.getEnableConfig() && causeUser != null && !config.getEnableGlobal()){
 //                    listener.getLogger().println("全局配置已经启用");
             List<CustomenvironmentUserPropertyItem> items = config.getEnvItems();
             if(items != null) {
@@ -357,6 +358,66 @@ public class CustomenvironmentBuilder extends SimpleBuildWrapper {
         @Override
         public String getDisplayName() {
             return Messages.CustomenvironmentBuilder_DescriptorImpl_DisplayName();
+        }
+    }
+
+    @Extension
+    public static class BuildUserVarsEnvironmentContributor extends EnvironmentContributor {
+        @Override
+        public void buildEnvironmentFor(@NonNull Run r, @NonNull EnvVars envs, @NonNull TaskListener listener) throws IOException, InterruptedException {
+//            super.buildEnvironmentFor(r, envs, listener);
+            User user = CustomenvironmentUtils.getUser(r);
+            CustomenvironmentGlobalConfig config = CustomenvironmentGlobalConfig.get();
+            String cause = CustomenvironmentUtils.getCause(r);
+            envs.put(Constants.Build_Causes, cause);
+            envs.put(Constants.Build_Page, r.getParent().getAbsoluteUrl() + r.getId());
+            envs.put(Constants.Build_Console, r.getParent().getAbsoluteUrl() + r.getId() + "/console");
+            if (config.getEnableConfig() && user != null && config.getEnableGlobal()) {
+//                    listener.getLogger().println("全局配置已经启用");
+                List<CustomenvironmentUserPropertyItem> items = config.getEnvItems();
+                if (items != null) {
+                    for (int i = 0; i < items.size(); i++) {
+                        CustomenvironmentUserPropertyItem item = items.get(i);
+                        envs.put("g_" + item.getKey(), item.getValue());
+                        envs.put(item.getKey(), item.getValue());
+                    }
+                }
+                List<CustomenvironmentUserPropertyItemPasswd> itemsPasswd = config.getEnvItemsPasswd();
+                if (itemsPasswd != null) {
+                    for (int i = 0; i < itemsPasswd.size(); i++) {
+                        CustomenvironmentUserPropertyItemPasswd item = itemsPasswd.get(i);
+                        envs.put("g_" + item.getKey(), CustomenvironmentUtils.getPasswd(item.getValue()));
+                        envs.put(item.getKey(), CustomenvironmentUtils.getPasswd(item.getValue()));
+                    }
+                }
+
+            } else {
+//                    listener.getLogger().println("全局配置没有启用");
+            }
+            if (user != null) {
+                envs.put(Constants.Build_User_Display_Name, user.getDisplayName());
+                envs.put(Constants.Build_User_Full_Name, user.getFullName());
+                envs.put(Constants.Build_User_ID, user.getId());
+                Mailer.UserProperty prop = user.getProperty(Mailer.UserProperty.class);
+                if (null != prop) {
+                    String adress = StringUtils.trimToEmpty(prop.getAddress());
+                    envs.put(Constants.Build_User_Email, adress);
+                }
+                if (user.getProperty(CustomenvironmentUserProperty.class).isEnableConfig()) {
+                    List<CustomenvironmentUserPropertyItemPasswd> passwds = user.getProperty(CustomenvironmentUserProperty.class).getEnvItemsPasswd();
+                    List<CustomenvironmentUserPropertyItem> items = user.getProperty(CustomenvironmentUserProperty.class).getEnvItems();
+                    if (passwds != null) {
+                        for (int i = 0; i < passwds.size(); i++) {
+                            envs.put(passwds.get(i).getKey(), passwds.get(i).getValue().getPlainText());
+                        }
+                    }
+                    if (items != null) {
+                        for (int i = 0; i < items.size(); i++) {
+                            envs.put(items.get(i).getKey(), items.get(i).getValue());
+                        }
+                    }
+                }
+            }
         }
     }
     private static final Logger LOGGER = Logger.getLogger(CustomenvironmentBuilder.class.getName());

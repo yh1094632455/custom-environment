@@ -18,6 +18,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class CustomenvironmentUtils {
+    static public String getCause(Run<?, ?> run){
+        return run.getCauses().stream().map(Cause::getShortDescription).collect(Collectors.joining());
+    }
     static public User getUser(Run<?, ?> run) {
         Cause.UserIdCause userIdCause = run.getCause(Cause.UserIdCause.class);
         // 执行人信息
@@ -27,7 +30,7 @@ public class CustomenvironmentUtils {
         if (userIdCause != null && userIdCause.getUserId() != null) {
             user = User.getById(userIdCause.getUserId(), false);
         }
-        if (user != null){
+        if (user == null){
             String executorName = run.getCauses().stream().map(Cause::getShortDescription).collect(Collectors.joining());
 
             String regex = "\\[[\\w]+\\]";

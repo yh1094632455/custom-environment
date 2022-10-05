@@ -57,3 +57,26 @@
 
 Licensed under MIT, see [LICENSE](LICENSE.md)
 
+## Hide password in console output
+- Will automatically hide if you are not a Pipline
+- Yes if you are a Pipline
+
+## 隐藏密码在控制台输出
+- 如果你不是pipline则会自动隐藏
+- 如果你是pipline 则需要
+```groovy
+// Mask secret variables and try to print
+pipeline {
+    agent any
+    stages {
+        stage ("Print variable") {
+            steps {
+                wrap([$class: "CustomenvironmentBuilder"]){
+                    echo "test =${env.test}"
+                    echo "g_test=${env.g_test}"
+                }
+            }
+        }
+    }
+}
+```
