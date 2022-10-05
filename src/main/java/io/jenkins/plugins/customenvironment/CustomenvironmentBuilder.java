@@ -83,49 +83,6 @@ public class CustomenvironmentBuilder extends SimpleBuildWrapper {
         User user = CustomenvironmentUtils.getUser(build);
         cause = build.getCauses().stream().map(Cause::getShortDescription).collect(Collectors.joining());
         causeUser = user;
-        if(user != null)
-        {
-            listener.getLogger().println("test");
-        }else {
-            listener.getLogger().println("test2");
-        }
-        CustomenvironmentGlobalConfig config = CustomenvironmentGlobalConfig.get();
-        if(config.getEnableConfig() && causeUser != null){
-//                    listener.getLogger().println("全局配置已经启用");
-            List<CustomenvironmentUserPropertyItem> items = config.getEnvItems();
-            if(items != null) {
-                for (int i = 0; i < items.size(); i++) {
-                    CustomenvironmentUserPropertyItem item = items.get(i);
-                    listener.getLogger().println(item.getKey() + item.getValue());
-                }
-            }
-            List<CustomenvironmentUserPropertyItemPasswd> itemsPasswd = config.getEnvItemsPasswd();
-            if(itemsPasswd != null) {
-                for (int i = 0; i < itemsPasswd.size(); i++) {
-                    CustomenvironmentUserPropertyItemPasswd item = itemsPasswd.get(i);
-                    listener.getLogger().println(item.getKey() + item.getValue().getPlainText());
-                }
-            }
-
-        }else{
-//                    listener.getLogger().println("全局配置没有启用");
-        }
-        if(user != null){
-            if(user.getProperty(CustomenvironmentUserProperty.class).isEnableConfig()) {
-                List<CustomenvironmentUserPropertyItemPasswd> passwds = user.getProperty(CustomenvironmentUserProperty.class).getEnvItemsPasswd();
-                List<CustomenvironmentUserPropertyItem> items = user.getProperty(CustomenvironmentUserProperty.class).getEnvItems();
-                if(passwds != null){
-                    for (int i = 0; i < passwds.size(); i++) {
-                        listener.getLogger().println(passwds.get(i).getKey() + passwds.get(i).getValue().getPlainText());
-                    }
-                }
-                if(items != null){
-                    for (int i = 0; i < items.size(); i++) {
-                        listener.getLogger().println(items.get(i).getKey() + items.get(i).getValue());
-                    }
-                }
-            }
-        }
     }
 
     @Override
