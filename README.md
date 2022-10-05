@@ -58,12 +58,12 @@
 Licensed under MIT, see [LICENSE](LICENSE.md)
 
 ## Hide password in console output
-- Will automatically hide if you are not a Pipline
-- Yes if you are a Pipline
+- Will automatically hide if you are not a Pipeline
+- Yes if you are a Pipeline
 
 ## 隐藏密码在控制台输出
-- 如果你不是pipline则会自动隐藏
-- 如果你是pipline 则需要
+- 如果你不是Pipeline则会自动隐藏
+- 如果你是Pipeline 则需要
 ```groovy
 // Mask secret variables and try to print
 pipeline {
