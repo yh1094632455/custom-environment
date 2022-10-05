@@ -1,16 +1,12 @@
 # ConfigEnvironmentInjector
 
 ## Introduction
-- You can customize a username and password for each user for your build tasks
-- You can also globally set a custom username and password for your build tasks, 
 - You can also customize some variables for your build tasks 
 - The plugin presets some variables for your build tasks
-- If you set the global environment variable of the plugin and the user's environment variable, the environment variable set by the same environment variable user will override the global environment variable. If you set the global environment variable that comes with Jenkins, the global environment variable of the plugin and the user's environment variable will fail, whichever is set by Jenkins
-- 您可以为构建任务的每个用户自定义用户名和密码
-- 您还可以为构建任务全局设置自定义用户名和密码，
+- If you set the global environment variable of the plugin and the user's environment variable, the environment variable set by the same environment variable user will override the global environment variable. If you set the global environment variable that comes with Jenkins
 - 您还可以为构建任务自定义一些变量
 - 该插件为您的构建任务预设了一些变量
-- 如果设置插件的全局环境变量和用户的环境变量，同一个环境变量用户设置的环境变量会覆盖全局环境变量。 如果设置了Jenkins自带的全局环境变量，插件的全局环境变量和用户的环境变量都会失效，以Jenkins设置的为准
+- 如果设置插件的全局环境变量和用户的环境变量，同一个环境变量用户设置的环境变量会覆盖全局环境变量
 ## Getting started
 
 ###The plugin provides the following environment variables:
@@ -18,8 +14,6 @@
 
 | Variable                  | Description                           |
 | ------------------------  | ----------------------------------    |
-| user_name                 |The username you set through the plugin|
-| pass_word                 |The password you set through the plugin|
 | Build\_Causes             | Build_Causes                          |
 | Build\_Page               | Current build page address            |
 | Build\_Console            | Current build Console address         |
@@ -30,7 +24,6 @@
 
 | 变量                       | 说明                                   |
 | ------------------------  | ----------------------------------     |
-| pass_word                 |您通过插件设置的密码                        |
 | Build\_Causes             | Build_Causes                           |
 | Build\_Page               | 当前构建页面地址                          |
 | Build\_Console            | 当前构建控制台地址                         |
@@ -40,14 +33,10 @@
 | Build\_User\_Email        | 用户电子邮件地址                          |
 ## Fix coverage issues
 - g_key you set the global environment variable
-- l_key user configuration environment variable you set
-- The final result of key will be replaced by all variables set by Jenkins
-- r_key This is the final result of the environment variable you set (the global one you set will be replaced by the user's setting)
+- The final result of key
 
 - g_key 你设置全局环境变量
-- l_key 你设置的用户配置环境变量
-- key 最终结果，会被Jenkins设置的全部变量替换
-- r_key 这个是你设置的环境变量最终结果（你设置的全局会被用户的设置替换） 
+- key 最终结果
 
 ## Usage example
 ![](docs/images/user1.png)

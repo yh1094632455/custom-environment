@@ -1,0 +1,59 @@
+<!--
+  - The MIT License
+  -
+  - Copyright (c) 2010-2011, Manufacture Francaise des Pneumatiques Michelin,
+  - Romain Seguy
+  -
+  - Permission is hereby granted, free of charge, to any person obtaining a copy
+  - of this software and associated documentation files (the "Software"), to deal
+  - in the Software without restriction, including without limitation the rights
+  - to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  - copies of the Software, and to permit persons to whom the Software is
+  - furnished to do so, subject to the following conditions:
+  -
+  - The above copyright notice and this permission notice shall be included in
+  - all copies or substantial portions of the Software.
+  -
+  - THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  - IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  - FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  - AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  - LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  - OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  - THE SOFTWARE.
+  -->
+<div>
+
+    <p> Custom environment variables </p>
+
+    <p> You can customize a global environment variable, and each user can customize an environment variable </p>
+
+    <p> With the same key, user-defined environment variables will overwrite global variables. If global variables are overwritten, they can be used
+
+        <b>g_key</b> to get the <b>key means a custom key</b></p>
+
+    <p> If it's a password-type value, you print it in code and replace it with **********</p>.
+
+    <p> If you use the Generic Webhook Trigger to Trigger the build task, you can set Cause, in the format [value]. Value will match all the environment variables set by the user to find the corresponding user, and then use all the environment variables found by the user </p>.
+
+    <p> In addition, some other environment variables are preset </p>
+
+    <ul>
+
+        <li>Build_Causes </li>
+
+        <li>Build_Page </li>
+
+        <li>Build_Console </li>
+
+        <li>Build_User_Display_Name </li>
+
+        <li>Build_User_Full_Name </li>
+
+        <li>Build_User_ID</li>
+
+        <li>Build_User_Email </li>
+
+    </ul>
+
+</div>
