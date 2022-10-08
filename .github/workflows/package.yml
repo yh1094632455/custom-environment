@@ -4,7 +4,10 @@ on: [push]
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-      strategy:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
         fail-fast: false
         matrix:
           include:
@@ -26,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.platform }}
-          path: ${{ github.workspace }}/artifact/bin
+          path: ${{ github.workspace }}/target
   upload-release:
     name: Upload Release
     if: startsWith(github.ref, 'refs/tags/')
