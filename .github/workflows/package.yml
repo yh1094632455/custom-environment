@@ -8,28 +8,21 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        fail-fast: false
-        matrix:
-          include:
-            - { os: windows-latest, target: windows, platform: win32-x64}
-            # - { os: windows-latest, target: windows, platform: win32-x86, cmake_arch: "-A Win32"}
-            # - { os: ubuntu-latest, target: linux, platform: linux-x64}
-            # - { os: macos-latest, target: darwin, platform: darwin-x64}
-            # - { os: macos-latest, target: darwin, platform: darwin-arm64}
+        - { os: windows-latest, target: windows, platform: win32-x64}
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Build with Maven
-      run:
-        mvn package
-      - name: Upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.platform }}
-          path: ${{ github.workspace }}/target
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Build with Maven
+    run:
+      mvn package
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.platform }}
+        path: ${{ github.workspace }}/target
   upload-release:
     name: Upload Release
     if: startsWith(github.ref, 'refs/tags/')
