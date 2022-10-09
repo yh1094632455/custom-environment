@@ -20,6 +20,7 @@ jobs:
       run: |
         zip custom-environment.zip ./target/custom-environment.hpi
     - name: Create GitHub release
+      id: create_release
       uses: monkeyWie/create-release@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
