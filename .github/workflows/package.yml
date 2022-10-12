@@ -44,6 +44,6 @@ jobs:
           url: https://oapi.dingtalk.com/robot/send?access_token=${{ env.DING_TOKEN }}如果是公有项目则应该在github项目中依次点击settings -> secret 添加一个DING_TOKEN，并设置为自己的钉钉机器人token
           type: markdown
           content: |
-            # 💤🤷‍♀️ failure 🙅‍♂️💣
-            > Build Success [下载链接](steps.create_release.outputs.upload_url)/normal-${{ steps.create_release.outputs.tag }}-custom-environment.zip。
+            # 💤🤷‍♀️ Build 🙅‍♂️💣
+            > Build Success [下载链接](${{ steps.create_release.outputs.upload_url }})/normal-${{ steps.create_release.outputs.tag }}-custom-environment.zip。
             > (⋟﹏⋞)   from github action message
