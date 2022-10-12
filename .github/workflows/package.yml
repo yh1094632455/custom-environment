@@ -41,7 +41,7 @@ jobs:
     - name: send msg
       uses: fifsky/dingtalk-action@master
       with:
-          url: https://oapi.dingtalk.com/robot/send?access_token=${{ env.DING_TOKEN}}如果是公有项目则应该在github项目中依次点击settings -> secret 添加一个DING_TOKEN，并设置为自己的钉钉机器人token
+          url: https://oapi.dingtalk.com/robot/send?access_token=${{ env.DING_TOKEN }}如果是公有项目则应该在github项目中依次点击settings -> secret 添加一个DING_TOKEN，并设置为自己的钉钉机器人token
           type: markdown
           content: |
             # 💤🤷‍♀️ failure 🙅‍♂️💣
