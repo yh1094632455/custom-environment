@@ -42,9 +42,9 @@ jobs:
       uses: fifsky/dingtalk-action@master
       with:
           
-          url: https://oapi.dingtalk.com/robot/send?access_token=${{ env.DING_TOKEN }}
+          url: https://oapi.dingtalk.com/robot/send?access_token=${{ secrets.DING_TOKEN }}
           type: markdown
           content: |
             # 💤🤷‍♀️ Build 🙅‍♂️💣
-            > Build Success [下载链接](steps.Upload_Release.browser_download_url)。
+            > Build Success [下载链接](${{ steps.Upload_Release.browser_download_url }})。
             > (⋟﹏⋞)   from github action message
