@@ -46,5 +46,5 @@ jobs:
           type: markdown
           content: |
             # 💤🤷‍♀️ Build 🙅‍♂️💣
-            > Build Success [下载链接](${{ steps.Upload_Release.browser_download_url }})。
+            > Build Success [下载链接](${{ steps.Upload_Release.outputs.browser_download_url }})。
             > (⋟﹏⋞)   from github action message
