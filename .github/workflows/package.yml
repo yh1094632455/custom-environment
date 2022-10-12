@@ -16,9 +16,9 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn package
-    - name: Build zip
-      run: |
-        zip custom-environment.zip ./target/custom-environment.hpi
+    # - name: Build zip
+    #   run: |
+    #     zip custom-environment.zip ./target/custom-environment.hpi
     - name: Create GitHub release
       id: create_release
       uses: monkeyWie/create-release@master
@@ -29,21 +29,22 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-    - name: Upload Release normal windows
+    - name: Upload_Release
       uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./custom-environment.zip
-          asset_name: normal-${{ steps.create_release.outputs.tag }}-custom-environment.zip
+          asset_path: ./target/custom-environment.hpi
+          asset_name: normal-${{ steps.create_release.outputs.tag }}-custom-environment.hpi
           asset_content_type: application/zip
     - name: send msg
       uses: fifsky/dingtalk-action@master
       with:
-          url: https://oapi.dingtalk.com/robot/send?access_token=${{ env.DING_TOKEN }}如果是公有项目则应该在github项目中依次点击settings -> secret 添加一个DING_TOKEN，并设置为自己的钉钉机器人token
+          
+          url: https://oapi.dingtalk.com/robot/send?access_token=${{ env.DING_TOKEN }}
           type: markdown
           content: |
             # 💤🤷‍♀️ Build 🙅‍♂️💣
-            > Build Success [下载链接](${{ steps.create_release.outputs.upload_url }})/normal-${{ steps.create_release.outputs.tag }}-custom-environment.zip。
+            > Build Success [下载链接](steps.Upload_Release.browser_download_url)。
             > (⋟﹏⋞)   from github action message
